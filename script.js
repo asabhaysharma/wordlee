@@ -100,6 +100,22 @@ class WordleGame {
                 this.addLetter(key);
             }
         });
+
+        // Touch events for mobile
+        this.keyboard.addEventListener('touchstart', (e) => {
+            if (this.gameOver) return;
+
+            const key = e.target.getAttribute('data-key');
+            if (!key) return;
+
+            if (key === 'Enter') {
+                this.submitGuess();
+            } else if (key === 'Backspace') {
+                this.deleteLetter();
+            } else if (key.match(/^[A-Z]$/)) {
+                this.addLetter(key);
+            }
+        });
         
         // New game button
         this.newGameBtn.addEventListener('click', () => {
