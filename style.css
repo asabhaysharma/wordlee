@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121213;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #3a3a3c;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message {
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.message.success {
+    background-color: #538d4e;
+    color: white;
+}
+
+.message.error {
+    background-color: #b59f3b;
+    color: white;
+}
+
+.message.info {
+    background-color: #3a3a3c;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.board-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid #3a3a3c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.tile.filled {
+    border-color: #565758;
+    animation: pop 0.1s ease;
+}
+
+.tile.correct {
+    background-color: #538d4e;
+    border-color: #538d4e;
+    color: white;
+}
+
+.tile.present {
+    background-color: #b59f3b;
+    border-color: #b59f3b;
+    color: white;
+}
+
+.tile.absent {
+    background-color: #3a3a3c;
+    border-color: #3a3a3c;
+    color: white;
+}
+
+.tile.flip {
+    animation: flip 0.6s ease forwards;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes flip {
+    0% { transform: rotateX(0); }
+    50% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0); }
+}
+
+/* Keyboard */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.key {
+    min-width: 43px;
+    height: 58px;
+    border: none;
+    border-radius: 4px;
+    background-color: #818384;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    touch-action: manipulation;
+}
+
+.key:hover {
+    background-color: #9a9b9c;
+}
+
+.key:active {
+    transform: scale(0.95);
+}
+
+.key-large {
+    min-width: 65px;
+    font-size: 0.75rem;
+}
+
+.key.correct {
+    background-color: #538d4e;
+}
+
+.key.present {
+    background-color: #b59f3b;
+}
+
+.key.absent {
+    background-color: #3a3a3c;
+}
+
+/* Game Controls */
+.game-controls {
+    text-align: center;
+}
+
+.new-game-btn {
+    background-color: #538d4e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.new-game-btn:hover {
+    background-color: #446e3a;
+}
+
+.new-game-btn:active {
+    transform: scale(0.95);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .tile {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+    
+    .key {
+        min-width: 28px;
+        height: 48px;
+        font-size: 0.75rem;
+    }
+    
+    .key-large {
+        min-width: 50px;
+        font-size: 0.65rem;
+    }
+    
+    .keyboard {
+        gap: 6px;
+    }
+    
+    .keyboard-row {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .tile {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+    
+    .key {
+        min-width: 24px;
+        height: 44px;
+        font-size: 0.7rem;
+    }
+    
+    .key-large {
+        min-width: 45px;
+        font-size: 0.6rem;
+    }
+}
