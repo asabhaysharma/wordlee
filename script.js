@@ -147,7 +147,7 @@ class WordleGame {
         // Hide message
         this.hideMessage();
         
-        console.log('Target word:', this.targetWord); // For debugging
+        //console.log('Target word:', this.targetWord); // For debugging
     }
     
     addLetter(letter) {
